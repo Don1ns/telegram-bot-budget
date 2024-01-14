@@ -15,7 +15,7 @@ public enum Category {
     ENTERTAINMENT("Развлечения"),
     MONEY_TRANSFERS("Переводы"),
     OTHER("Другое"),
-    SHARES("Акции/Дивиденды/Процент"),
+    SHARES("Ценные бумаги"),
     SOCIAL_PAYMENTS("Социальные выплаты"),
     BONUSES("Бонусы"),
     SALARY("Зарплата");

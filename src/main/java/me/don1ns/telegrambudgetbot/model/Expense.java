@@ -2,29 +2,29 @@ package me.don1ns.telegrambudgetbot.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity
 @Table(name = "expenses")
 public class Expense {
     @Id
-    @Column(name = "expence_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "user_chat_id")
-    private User user;
+    private String userName;
     private int amount;
     @Enumerated
     private Category category;
-    private LocalDateTime date = LocalDateTime.now();
+    private LocalDate date = LocalDate.now();
 
     public Expense() {
     }
 
-    public Expense(Long id, User user, int amount, Category category, LocalDateTime date) {
+    public Expense(Long id, String userName, int amount, Category category, LocalDate date) {
         this.id = id;
-        this.user = user;
+        this.userName = userName;
         this.amount = amount;
         this.category = category;
         this.date = date;
@@ -38,12 +38,12 @@ public class Expense {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getAmount() {
@@ -62,23 +62,13 @@ public class Expense {
         this.category = category;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public String getDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
+        return date.format(formatter);
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "Expense{" +
-                "id=" + id +
-                ", user=" + user +
-                ", amount=" + amount +
-                ", category='" + category + '\'' +
-                ", date=" + date +
-                '}';
     }
 
     @Override
@@ -86,11 +76,11 @@ public class Expense {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Expense expense = (Expense) o;
-        return amount == expense.amount && Objects.equals(id, expense.id) && Objects.equals(user, expense.user) && Objects.equals(category, expense.category) && Objects.equals(date, expense.date);
+        return amount == expense.amount && Objects.equals(id, expense.id) && Objects.equals(userName, expense.userName) && category == expense.category && Objects.equals(date, expense.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, amount, category, date);
+        return Objects.hash(id, userName, amount, category, date);
     }
 }

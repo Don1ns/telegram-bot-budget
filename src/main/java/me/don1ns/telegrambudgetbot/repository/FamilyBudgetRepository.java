@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface FamilyBudgetRepository extends JpaRepository<FamilyBudget, Long> {
-    @Query("SELECT b FROM FamilyBudget b JOIN b.users u WHERE u.user_chat_id = :chatId")
-    Optional<FamilyBudget> findByUserChatId(@Param("chatId") Long chatId);
+//    @Query("SELECT b FROM FamilyBudget b JOIN b.users u WHERE u.chatId = :chatId")
+//    Optional<FamilyBudget> findByUserChatId(@Param("chatId") Long chatId);
 
     Optional<FamilyBudget> findByBudgetName(String budgetName);
 }

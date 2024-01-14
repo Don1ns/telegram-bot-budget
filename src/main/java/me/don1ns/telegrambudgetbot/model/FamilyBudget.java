@@ -10,27 +10,24 @@ import java.util.Set;
 @Table(name = "family_budgets")
 public class FamilyBudget {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String budgetName;
     private String keyword;
-    @OneToMany
-    @JoinColumn(name = "user_chat_id")
-    private Set<User> users = new HashSet<>();
-    @OneToMany
-    @JoinColumn(name = "income_id")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "budget_id")
     private Set<Income> incomes = new HashSet<>();
-    @OneToMany
-    @JoinColumn(name = "expense_id")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "budget_id")
     private Set<Expense> expenses = new HashSet<>();
 
     public FamilyBudget() {
     }
 
-    public FamilyBudget(Long id, String budgetName, String keyword, Set<User> users, Set<Income> incomes, Set<Expense> expenses) {
+    public FamilyBudget(Long id, String budgetName, String keyword, Set<Income> incomes, Set<Expense> expenses) {
         this.id = id;
         this.budgetName = budgetName;
         this.keyword = keyword;
-        this.users = users;
         this.incomes = incomes;
         this.expenses = expenses;
     }
@@ -59,14 +56,6 @@ public class FamilyBudget {
         this.keyword = keyword;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
     public Set<Income> getIncomes() {
         return incomes;
     }
@@ -84,27 +73,15 @@ public class FamilyBudget {
     }
 
     @Override
-    public String toString() {
-        return "FamilyBudget{" +
-                "id=" + id +
-                ", budgetName='" + budgetName + '\'' +
-                ", keyword='" + keyword + '\'' +
-                ", users=" + users +
-                ", incomes=" + incomes +
-                ", expenses=" + expenses +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FamilyBudget that = (FamilyBudget) o;
-        return Objects.equals(id, that.id) && Objects.equals(budgetName, that.budgetName) && Objects.equals(keyword, that.keyword) && Objects.equals(users, that.users) && Objects.equals(incomes, that.incomes) && Objects.equals(expenses, that.expenses);
+        FamilyBudget budget = (FamilyBudget) o;
+        return Objects.equals(id, budget.id) && Objects.equals(budgetName, budget.budgetName) && Objects.equals(keyword, budget.keyword) && Objects.equals(incomes, budget.incomes) && Objects.equals(expenses, budget.expenses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, budgetName, keyword, users, incomes, expenses);
+        return Objects.hash(id, budgetName, keyword, incomes, expenses);
     }
 }

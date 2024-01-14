@@ -19,7 +19,7 @@ public class Keyboard {
     public void chooseMenu(long chatId) {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
                 ButtonCommand.CREATE_BUDGET.getCommand(), ButtonCommand.ADD_TO_BUDGET.getCommand());
-        sendResponseMenu(chatId, replyKeyboardMarkup, "");
+        sendResponseMenu(chatId, replyKeyboardMarkup, "Выберите, хотите ли вы создать бюджет или присоединиться в существующий");
     }
     public void mainMenu(long chatId) {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
@@ -31,6 +31,7 @@ public class Keyboard {
     public void checkBudget(long chatId) {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
                 new String[]{ButtonCommand.GET_BALANCE.getCommand(), ButtonCommand.LAST_OPERATIONS.getCommand()},
+                new String[]{ButtonCommand.INCOMES.getCommand(), ButtonCommand.EXPENSES.getCommand()},
                 new String[]{ButtonCommand.MAIN_MENU.getCommand()});
         sendResponseMenu(chatId, replyKeyboardMarkup, "Ниже представлено меню просмотра бюджета. ");
     }
@@ -46,9 +47,9 @@ public class Keyboard {
     }
     public void addIncome(long chatId) {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
-                new String[]{ButtonCommand.TRANSPORT.getCommand(), ButtonCommand.SUPERMARKETS.getCommand(), ButtonCommand.RESTAURANTS.getCommand()},
-                new String[]{ButtonCommand.HOUSE_AND_RENOVATION.getCommand(), ButtonCommand.INTERNET.getCommand(), ButtonCommand.BEAUTY.getCommand()},
-                new String[]{ButtonCommand.MONEY_TRANSFERS_EXPENSE.getCommand(), ButtonCommand.OTHER_EXPENSE.getCommand()},
+                new String[]{ButtonCommand.SALARY.getCommand(), ButtonCommand.BONUSES.getCommand()},
+                new String[]{ButtonCommand.SOCIAL_PAYMENTS.getCommand(), ButtonCommand.SHARES.getCommand()},
+                new String[]{ButtonCommand.MONEY_TRANSFERS_INCOME.getCommand(), ButtonCommand.OTHER_INCOME.getCommand()},
                 new String[]{ButtonCommand.MAIN_MENU.getCommand()});
         sendResponseMenu(chatId, replyKeyboardMarkup, "Выберите категорию. ");
     }

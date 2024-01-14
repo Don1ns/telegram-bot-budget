@@ -20,9 +20,9 @@ public class FamilyBudgetService {
     public Optional<FamilyBudget> getById(Long id) {
         return familyBudgetRepository.findById(id);
     }
-    public Optional<FamilyBudget> getByUserChatId(Long chatId) {
-        return familyBudgetRepository.findByUserChatId(chatId);
-    }
+//    public Optional<FamilyBudget> getByUserChatId(Long chatId) {
+//        return familyBudgetRepository.findByUserChatId(chatId);
+//    }
     public Optional<FamilyBudget> getByBudgetName(String budgetName) {
         return familyBudgetRepository.findByBudgetName(budgetName);
     }
